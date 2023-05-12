@@ -1,0 +1,45 @@
+@import "@inkline/inkline/css/variables";
+@import "@inkline/inkline/css/mixins";
+
+:root {
+  --spacing: 1rem;
+  --padding-top: 1rem;
+  --padding-right: 1rem;
+  --padding-bottom: 1rem;
+  --padding-left: 1rem;
+
+  --border-top-left-radius: 0.25rem;
+  --border-top-right-radius: 0.25rem;
+  --border-bottom-right-radius: 0.25rem;
+  --border-bottom-left-radius: 0.25rem;
+
+  --color--primary--h: 195deg;
+  --color--primary--s: 77%;
+  --color--primary--l: 39%;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+@include i-button() {
+  ----padding-left: 2rem;
+  ----padding-right: 2rem;
+
+  @include variant("sm") {
+    ----font-size: 10px;
+  }
+
+  @include variant("light") {
+    ----background: white;
+  }
+}
+
+@font-face {
+  font-family: indus;
+  src: url("./assets/fonts/sk_indus_script-webfont.ttf") format("truetype");
+}
