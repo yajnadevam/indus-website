@@ -6,9 +6,12 @@ USE induswebsite;
 
 /* User Setup */
 DROP USER IF EXISTS indususer@localhost;
+DROP USER IF EXISTS indususer@'%';
 
 CREATE USER indususer@localhost IDENTIFIED WITH mysql_native_password BY "password123";
+CREATE USER indususer@'%' IDENTIFIED WITH mysql_native_password BY "password123";
 GRANT ALL PRIVILEGES ON *.* TO indususer@localhost;
+GRANT ALL PRIVILEGES ON *.* TO indususer@'%';
 
 CREATE TABLE USER (
   USERNAME             NVARCHAR(25),

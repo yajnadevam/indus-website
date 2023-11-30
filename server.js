@@ -10,9 +10,24 @@ const app = express();
 var jsonParser = bodyParser.json();
 const salt = bcrypt.genSaltSync(10);
 
+if (process.env.NODE_ENV == 'production') {
+  require('dotenv').config();
+} else {
+  require('dotenv').config({path: './local.env'});
+}
+
 // Create a MySQL connection
 async function createConnection() {
-  return mysql.createConnection(require("./db.config"));
+  let config = {
+      host: process.env.MYSQL_ROOT_HOST,
+      user: process.env.MYSQLDB_USER,
+      password: process.env.MYSQLDB_ROOT_PASSWORD,
+      database: process.env.MYSQLDB_DATABASE,
+      localAddress: process.env.NODE_DOCKER_PORT,
+      port: process.env.MYSQLDB_DOCKER_PORT,
+  }
+  console.log(config);
+  return mysql.createConnection(config);
 }
 
 async function userData(connection, username) {
